@@ -74,10 +74,10 @@ public class NCoV19Installer{
 
 		ProcessBuilder pb = new ProcessBuilder();
 
-		if((System.getProperty("os.name").toLowerCase()).equals("windows")){ //windows installer
-			pb.command("cmd.exe", "-c", "mysql -u "+creden[0]+" -p"+creden[1]+" covidDb01 < covidDDL.sql");
+		if((System.getProperty("os.name").toLowerCase()).startsWith("windows")){ //windows installer
+			pb.command("cmd.exe", "-c", "mysql -u "+creden[0]+" -p"+creden[1]+" coviddb < covidDDL.sql");
 		}else{ //linux installer
-			pb.command("/bin/bash", "-c", "mysql -u "+creden[0]+" -p"+creden[1]+" covidDb01 < covidDDL.sql");
+			pb.command("/bin/bash", "-c", "mysql -u "+creden[0]+" -p"+creden[1]+" coviddb < covidDDL.sql");
 		}
 		pb.redirectErrorStream(true);
 		try{
@@ -107,7 +107,7 @@ public class NCoV19Installer{
         }
         
         try {
-            String url = "jdbc:mysql://localhost:/covidDb01?createDatabaseIfNotExist=true";
+            String url = "jdbc:mysql://localhost:/coviddb?createDatabaseIfNotExist=true";
             connection = DriverManager.getConnection(url, user, pass);
             setDBLogIn(user, pass);
         } catch (SQLException sqle) {
@@ -157,10 +157,10 @@ public class NCoV19Installer{
 			//concurrent please wait
 			ProcessBuilder pb = new ProcessBuilder();
 
-			if((System.getProperty("os.name").toLowerCase()).equals("windows")){ //windows 
-				pb.command("cmd.exe", "-c", "mysql -u "+creden[0]+" -p"+creden[1]+" covidDb01 < "+path);
+			if((System.getProperty("os.name").toLowerCase()).startsWith("windows")){ //windows 
+				pb.command("cmd.exe", "-c", "mysql -u "+creden[0]+" -p"+creden[1]+" coviddb < "+path);
 			}else{ //linux 
-				pb.command("/bin/bash", "-c", "mysql -u "+creden[0]+" -p"+creden[1]+" covidDb01 < "+path);
+				pb.command("/bin/bash", "-c", "mysql -u "+creden[0]+" -p"+creden[1]+" coviddb < "+path);
 			}
 			pb.redirectErrorStream(true);
 			try{
@@ -212,7 +212,7 @@ public class NCoV19Installer{
 		//drop db
 		try{
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("DROP DATABASE covidDb01");
+			stmt.executeUpdate("DROP DATABASE coviddb");
 			stmt.close();	
 		}catch(SQLException sqle){}
 	}

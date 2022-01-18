@@ -1,5 +1,5 @@
 //package Covid19TracerApp;
-package tracerapp;
+//package tracerapp;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;

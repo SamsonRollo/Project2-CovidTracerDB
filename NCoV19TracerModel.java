@@ -38,7 +38,7 @@ public class NCoV19TracerModel{
         }
         
         try {
-            String url = "jdbc:mysql://localhost:/covidDB";
+            String url = "jdbc:mysql://localhost:/coviddb";
             connection = DriverManager.getConnection(url, user, pass);
             System.out.println("Connected Successfully");
             cont.setCode(200);
